@@ -20,9 +20,12 @@ class DemoView(APIView):
     def post(self, request):
         print(request)
         print(request.query_params)
-        n = request.query_params.get("name")
-        desc = request.POST.get("description")
-        # Datchik(name= str(n),discription= str(desc)).save()
+        #n = request.query_params.get("name")
+        #desc = request.POST.get("description")
+        params = json.loads(request.body.decode())
+        n = params.get("name")
+        desc = params.get("description")
+        Datchik(name= str(n),discription= str(desc)).save()
         return Response({'st': 'post_ok', str(n): str(desc)})
 
 
